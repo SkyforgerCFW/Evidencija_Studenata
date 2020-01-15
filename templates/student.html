@@ -1,0 +1,135 @@
+{%extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xs-12 col-sm-6 my-5">
+      <!-- informacije o studentu -->
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th scope="row">Ime</th>
+            <td>{{ student.ime }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Ime roditelja</th>
+            <td>{{ student.ime_roditelja }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Prezime</th>
+            <td>{{ student.prezime }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Broj Indeksa</th>
+            <td>{{ student.broj_indeksa }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Godina Studija</th>
+            <td>{{ student.godina_studija }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Broj telefona</th>
+            <td>{{ student.broj_telefona }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Email</th>
+            <td>{{ student.email }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Datum rodjenja</th>
+            <td>{{ student.datum_rodjenja }}</td>
+          </tr>
+          <tr>
+            <th scope="row">JMBG</th>
+            <td>{{ student.JMBG }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Ukupno ESPB</th>
+            <td>{{ student.espb }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Prosek ocena</th>
+            <td>{{ student.prosek_ocena }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Akcije</th>
+            <td class="d-inline-flex">
+              <a class="icon-btn orange mx-1" href={{ url_for('student_izmena', id=2) }} role="button">
+                <i class="fas fa-edit"></i>
+              </a>
+              <a class="icon-btn red" href={{ url_for('student_brisanje', id=2) }} role="button">
+                <i class="fas fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+        
+    <!-- dodavanje ocene -->
+    <div class="col-xs-12 col-sm-6 my-5">
+      <form id="dodavanje_ocene" action={{ url_for('ocena_nova', id=student.id) }} method="POST">
+        <div class="form-group">
+          <label for="odaberi_predmet">Predmet</label>
+          <select class="form-control" id="odaberi_predmet" name="predmet" form="dodavanje_ocene" required>
+            <option value="" disabled selected>Odaberi predmet</option>
+            {% for predmet in predmeti %}
+            <option value={{ predmet.id }}>{{ predmet.naziv }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ocena">Ocena</label>
+          <input type="text" class="form-control" id="ocena" name="ocena" required>
+        </div>
+        <div class="form-group">
+          <label for="datum">Datum</label>
+          <input type="date" class="form-control" id="datum" name="datum" required>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-primary">Dodaj Ocenu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-5">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Šifra</th>
+          <th scope="col">Naziv</th>
+          <th scope="col">Godina Studija</th>
+          <th scope="col">Obavezni/Izborni</th>
+          <th scope="col">ESPB</th>  
+          <th scope="col">Ocena</th>
+          <th scope="col">Akcije</th>      
+        </tr>
+      </thead>
+      <tbody>
+        {% for ocena in ocene %}
+        <tr>
+          <td>{{ ocena.sifra }}</td>
+          <td>{{ ocena.naziv }}</td>
+          <td>{{ ocena.godina_studija }}</td>
+          <td>{{ ocena.obavezni_izborni }}</td>
+          <td>{{ ocena.espb }}</td>
+          <td>{{ ocena.ocena }}</td>
+          <td>
+            <a class="icon-btn orange text-decoration-none" href={{ url_for('ocena_izmena', id=ocena.id) }} role="button">
+              <i class="fas fa-edit"></i>
+            </a>
+            <a class="icon-btn red" href={{ url_for('ocena_brisanje', id=ocena.id) }} role="button">
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+{% endblock %}

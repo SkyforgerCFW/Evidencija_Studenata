@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+	<div class="row justify-content-end my-3">
+		<a class="btn btn-primary" href="{{ url_for('student_novi') }}" role="button">Dodaj studenta</a>
+	</div>
+	<div class="row">
+		<table class="table col-12">
+		  <thead>
+		    <tr>
+		      <th scope="col"># indeksa</th>
+		      <th scope="col">Ime</th>
+		      <th scope="col">Ime roditelja</th>
+		      <th scope="col">Prezime</th>
+		      <th scope="col">God studija</th>
+		      <th scope="col">ESPB</th>
+		      <th scope="col">Prosek</th>
+		      <th scope="col">Akcije</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+			{% for student in studenti %}
+			<tr>
+				<td>{{ student.broj_indeksa }}</td>
+				<td>{{ student.ime }}</td>
+				<td>{{ student.ime_roditelja }}</td>
+				<td>{{ student.prezime }}</td>
+				<td>{{ student.godina_studija }}.</td>
+				<td>{{ student.espb }}</td>
+				<td>{{ student.prosek_ocena }}</td>
+				<td>
+					<a class="icon-btn blue text-decoration-none" href={{ url_for('student', id=student.id) }} role="button">
+						<i class="fas fa-eye"></i>
+					</a>
+					<a class="icon-btn orange text-decoration-none" href={{ url_for('student_izmena', id=student.id) }} role="button">
+						<i class="fas fa-edit"></i>
+					</a>
+					<a class="icon-btn red" href={{ url_for('student_brisanje', id=student.id) }} role="button">
+						<i class="fas fa-trash"></i>
+					</a>
+				</td>
+			</tr>
+			{% endfor %}
+		  </tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}

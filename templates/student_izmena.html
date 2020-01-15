@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class='container col-lg-2 col-xs-12'>
+
+  <div class="my-5">
+    <h3>Izmeni studenta</h3>
+  </div>
+
+  <form action={{ url_for('student_izmena', id=student.id) }} method="POST">
+    <div class="form-group">
+      <label for="brojIndeksa">Broj indeksa</label>
+      <input type="text" class="form-control" id="broj_indeksa" name="broj_indeksa" value='{{ student.broj_indeksa }}'>
+    </div>
+
+    <div class="form-group">
+      <label for="ime">Ime</label>
+      <input type="text" class="form-control" id="ime" name="ime" value='{{ student.ime }}'>
+    </div>
+
+    <div class="form-group">
+      <label for="imeRoditelja">Ime roditelja</label>
+      <input type="text" class="form-control" id="ime_roditelja" name="ime_roditelja" value='{{ student.ime_roditelja }}'>
+    </div>
+
+    <div class="form-group">
+      <label for="prezime">Prezime</label>
+      <input type="text" class="form-control" id="prezime" name="prezime" value='{{ student.prezime }}'>
+    </div>
+
+    <div class="form-group">
+      <label for="emailNovi">Email</label>
+      <input type="email" class="form-control" id="email" name="email" value='{{ student.email }}'>
+    </div>
+
+    <div class="form-group">
+      <label for="brojTelefona">Broj telefona</label>
+      <input type="text" class="form-control" id="broj_telefona" name="broj_telefona" value='{{ student.broj_telefona }}'>
+    </div>
+
+    <div class="form-group">
+      <label for="godinaStudija">Godina studija</label>
+      <input type="number" class="form-control" id="godina_studija" name="godina_studija" value='{{ student.godina_studija }}'>
+    </div>
+
+    <div class="form-group">
+      <label for="datumRodjenja">Datum rođenja</label>
+      <input type="date" class="form-control" id="datum_rodjenja" name="datum_rodjenja" value='{{ student.datum_rodjenja }}'>
+    </div>
+
+    <div class="form-group">
+      <label for="jmbg">JMBG</label>
+      <input type="text" class="form-control" id="JMBG" name="JMBG" value='{{ student.JMBG }}'>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Sačuvaj</button>
+  </form>
+      
+</div>
+
+{% endblock %}

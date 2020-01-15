@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Title</title>
+		<link rel="stylesheet" type="text/css" href="../static/style.css">
+		<link rel="stylesheet" type="text/css" href="../static/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../static/fontawesome-free-5.12.0-web/css/all.min.css">
+	</head>
+	<body>
+	
+	<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">Evidencija studenata</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('studenti') }}" role="button">Studenti <span></span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('predmeti') }}" role="button">Predmeti</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ url_for('korisnici') }}" role="button">Korisnici</a>
+			</li> 
+			</ul>
+			<!-- <a href="{{ url_for('studenti') }}"> -->
+			<form class="form-inline" action={{ url_for('logout') }}>
+				<button class="btn btn-primary" type="submit">
+					<i class="fas fa-sign-out-alt"></i>
+				</button>
+			</form>
+			<!-- </a> -->
+		</div>
+	</nav>
+
+	<div class="container">
+		{% for message in get_flashed_messages() %}
+		<div class="alert alert-warning">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			{{ message }}
+		</div>
+		{% endfor %}
+	</div>
+	<!-- <nav>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="nav mr-auto">
+			  <li class="nav-item">
+			    <a class="nav-link active" href="/">Evidencija Studenta</a>
+				 </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="/student">Studenti</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">Predmeti</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="#">Profesori</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" href="/login">Login</a>
+			  </li>			  
+			  <a class="icon-btn blue" href="{{ url_for('studenti') }}" role="button">
+					<i class="nav-link fas fa-sign-out-alt"></i>
+				</a>
+			</ul>
+		</div>
+	</nav> -->
+	
+	{% block content %}
+	lele
+	{% endblock %}
+	<script type="text/javascript" src="../static/jQuery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../static/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+	</body>
+</html>
